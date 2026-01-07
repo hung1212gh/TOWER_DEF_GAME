@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Tải ứng dụng</title>
+  <meta charset="UTF-8">
+  <title>Game Download</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
     * {
       box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, sans-serif;
     }
 
     body {
@@ -17,92 +18,124 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
+      background:
+        radial-gradient(circle at top, #1b1f3b, #05010f);
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
     }
 
-    .container {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 40px 32px;
+    .card {
       width: 100%;
-      max-width: 420px;
+      max-width: 460px;
+      padding: 32px;
+      border-radius: 18px;
+      background: rgba(10, 12, 30, 0.85);
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      box-shadow:
+        0 0 30px rgba(0, 255, 255, 0.15),
+        inset 0 0 20px rgba(0, 255, 255, 0.08);
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
 
     h1 {
       margin-top: 0;
-      font-size: 28px;
+      font-size: 30px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #00ffff;
     }
 
-    p {
-      opacity: 0.9;
-      font-size: 15px;
-      line-height: 1.6;
+    .subtitle {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 18px;
     }
 
-    .download-btn {
+    /* Screenshot */
+    .screenshot {
+      margin: 20px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0,255,255,0.4);
+      box-shadow: 0 0 25px rgba(0,255,255,0.3);
+    }
+
+    .screenshot img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .screenshot img:hover {
+      transform: scale(1.06);
+    }
+
+    /* Download button */
+    .download {
       display: inline-block;
-      margin-top: 28px;
-      padding: 14px 28px;
+      margin-top: 26px;
+      padding: 16px 34px;
       font-size: 16px;
-      font-weight: 600;
-      color: white;
+      letter-spacing: 1px;
+      color: #000;
+      background: linear-gradient(135deg, #00ffff, #00ff88);
+      border-radius: 12px;
       text-decoration: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      box-shadow: 0 10px 25px rgba(0, 114, 255, 0.5);
+      box-shadow:
+        0 0 25px rgba(0,255,255,0.8),
+        0 0 50px rgba(0,255,200,0.4);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .download-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(0, 114, 255, 0.7);
+    .download:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow:
+        0 0 40px rgba(0,255,255,1),
+        0 0 80px rgba(0,255,200,0.7);
     }
 
     .info {
-      margin-top: 24px;
-      font-size: 13px;
+      margin-top: 22px;
+      font-size: 12px;
       opacity: 0.8;
-    }
-
-    .info span {
-      display: block;
-      margin-top: 6px;
+      line-height: 1.6;
     }
 
     footer {
-      margin-top: 32px;
-      font-size: 12px;
+      margin-top: 28px;
+      font-size: 11px;
       opacity: 0.6;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>🎮 My App / Game</h1>
-    <p>
-      Ứng dụng dành cho Windows.<br>
-      Không cần cài Python hay pygame.(ko cần quan tâm)
-    </p>
+  <div class="card">
+    <h1>NEON BATTLE</h1>
+    <div class="subtitle">
+      Tower Defense Game • Windows
+    </div>
 
-    <!-- 🔽 ĐỔI LINK TẢI Ở ĐÂY -->
-    <a class="download-btn"
+    <!-- Screenshot -->
+    <div class="screenshot">
+      <img src="screenshot.png" alt="Game screenshot">
+    </div>
+
+    <!-- Download -->
+    <a class="download"
        href="https://www.mediafire.com/file/073s1u5q3mp1ogv/TowerDefense.exe/file">
-      ⬇ Tải về cho Windows
+      ⬇ DOWNLOAD GAME
     </a>
 
     <div class="info">
-      <span>✔ Windows 64-bit</span>
-      <span>✔ File .exe</span>
-      <span>⚠ Có thể bị antivirus cảnh báo (Nhưng an toàn VCL)</span>
+      ✔ Windows 64-bit<br>
+      ✔ Không cần cài Python<br>
+      ⚠ Antivirus có thể cảnh báo file lạ, 
+         nhấn chữ được gạch chân nhỏ, 
+         rồi nhấn nút mới hiện ra
     </div>
 
     <footer>
-      © 2026 • Made by Hoang 😍
+      © 2026 • Indie Game By Hoang ⚡
     </footer>
   </div>
 </body>
