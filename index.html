@@ -8,9 +8,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -18,10 +16,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background:
-        radial-gradient(circle at top, #1b1f3b, #05010f);
+      background: radial-gradient(circle at top, #1b1f3b, #05010f);
       color: #fff;
       font-family: 'Orbitron', sans-serif;
+      transition: background 0.6s ease;
     }
 
     .card {
@@ -35,6 +33,7 @@
         0 0 30px rgba(0, 255, 255, 0.15),
         inset 0 0 20px rgba(0, 255, 255, 0.08);
       text-align: center;
+      position: relative;
     }
 
     h1 {
@@ -50,7 +49,6 @@
       margin-bottom: 18px;
     }
 
-    /* Screenshot */
     .screenshot {
       margin: 20px 0;
       border-radius: 12px;
@@ -62,14 +60,8 @@
     .screenshot img {
       width: 100%;
       display: block;
-      transition: transform 0.4s ease;
     }
 
-    .screenshot img:hover {
-      transform: scale(1.06);
-    }
-
-    /* Download button */
     .download {
       display: inline-block;
       margin-top: 26px;
@@ -83,14 +75,6 @@
       box-shadow:
         0 0 25px rgba(0,255,255,0.8),
         0 0 50px rgba(0,255,200,0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .download:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow:
-        0 0 40px rgba(0,255,255,1),
-        0 0 80px rgba(0,255,200,0.7);
     }
 
     .info {
@@ -105,38 +89,104 @@
       font-size: 11px;
       opacity: 0.6;
     }
+
+    /* Nút chuyển game */
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 26px;
+      cursor: pointer;
+      user-select: none;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .nav.left { left: -10px; }
+    .nav.right { right: -10px; }
+
+    .nav:hover {
+      color: #00ff88;
+    }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>TOWER DEFENSE</h1>
-    <div class="subtitle">
-      Tower Defense Game • Windows
-    </div>
 
-    <!-- Screenshot -->
-    <div class="screenshot">
-      <img src="screenshot.png" alt="Game screenshot">
-    </div>
+<div class="card">
+  <div class="nav left" onclick="prevGame()">←</div>
+  <div class="nav right" onclick="nextGame()">→</div>
 
-    <!-- Download -->
-    <a class="download"
-       href="https://www.mediafire.com/file/073s1u5q3mp1ogv/TowerDefense.exe/file">
-      ⬇ DOWNLOAD GAME
-    </a>
+  <h1 id="title"></h1>
+  <div class="subtitle" id="subtitle"></div>
 
-    <div class="info">
-      ✔ Windows 64-bit<br>
-      ✔ Không cần cài Python<br>
-      ⚠ Antivirus có thể cảnh báo file lạ, 
-         nhấn chữ được gạch chân nhỏ, 
-         rồi nhấn nút mới hiện ra
-    </div>
-
-    <footer>
-      © 2026 • Indie Game By Hoang ⚡
-    </footer>
+  <div class="screenshot">
+    <img id="image" src="">
   </div>
+
+  <a class="download" id="download" href="" target="_blank">
+    ⬇ DOWNLOAD GAME
+  </a>
+
+  <div class="info" id="info"></div>
+
+  <footer>
+    © 2026 • Indie Game By Hoang ⚡
+  </footer>
+</div>
+
+<script>
+  const games = [
+    {
+      title: "TOWER DEFENSE",
+      subtitle: "Tower Defense Game • Windows",
+      image: "screenshot.png",
+      link: "https://www.mediafire.com/file/073s1u5q3mp1ogv/TowerDefense.exe/file",
+      background: "radial-gradient(circle at top, #1b1f3b, #05010f)",
+      info: "✔ Windows 64-bit<br>✔ Không cần cài Python"
+    },
+    {
+      title: "SPACE INVADERS",
+      subtitle: "Arcade Space Game • Windows",
+      image: "space.png",
+      link: "https://www.mediafire.com/file/rtbin8amg6hfv2z/Space_Invaders.exe/file",
+      background: "radial-gradient(circle at top, #0b3d91, #000)",
+      info: "✔ Nhẹ • Chạy mượt<br>✔ Offline"
+    },
+    {
+      title: "RPG ADVENTURE",
+      subtitle: "Indie RPG • Windows • ComingSoon",
+      image: "rpg.png",
+      link: "https://vi.pngtree.com/free-png-vectors/d%E1%BA%A5u-ch%E1%BA%A5m-h%E1%BB%8Fi",
+      background: "radial-gradient(circle at top, #3b1b1b, #0f0505)",
+      info: "✔ Cốt truyện dài<br>✔ Single Player"
+    }
+  ];
+
+  let index = 0;
+
+  function loadGame() {
+    const g = games[index];
+    document.getElementById("title").innerHTML = g.title;
+    document.getElementById("subtitle").innerHTML = g.subtitle;
+    document.getElementById("image").src = g.image;
+    document.getElementById("download").href = g.link;
+    document.getElementById("info").innerHTML = g.info;
+    document.body.style.background = g.background;
+  }
+
+  function nextGame() {
+    index = (index + 1) % games.length;
+    loadGame();
+  }
+
+  function prevGame() {
+    index = (index - 1 + games.length) % games.length;
+    loadGame();
+  }
+
+  loadGame();
+</script>
+
 </body>
 </html>
